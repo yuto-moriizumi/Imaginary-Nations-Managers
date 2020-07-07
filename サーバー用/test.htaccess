@@ -1,0 +1,15 @@
+AddHandler application/x-httpd-phpcgi .php　　#PHPをCGIとして動かすために必要
+
+#　以下はお好みに合わせて設定下さい。
+
+#　てかよくわからんので適当につけてます。
+
+php_value mbstring.func_overload 0
+
+php_value mbstring.language neutral
+
+php_value mbstring.internal_encoding UTF-8
+
+php_flag magic_quotes_gpc On
+
+php_flag register_globals Off

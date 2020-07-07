@@ -1,0 +1,45 @@
+<html>
+</head>
+<body>
+<input type="file" id="selectfile" accept='image/*'>
+<form name="main">
+<table border="1">
+				<tr><th>UŒ‚‘¤‚Ì‘</th><th>ŒR–—Í</th><th></th><th>–hŒä‘¤‚Ì‘</th><th>ŒR–—Í</th></tr>
+				<tr><td><input type="text" name="AttackCountry1" value="‘–¼"></td><td><input type="text" name="AttackMilitary1" value="ŒR–—Í"></td><td></td><td><input type="text" name="DefenceCountry1" value="‘–¼"></td><td><input type="text" name="DefenceMilitary1" value="ŒR–—Í"></td></tr>
+				<tr><td><input type="text" name="AttackCountry2" value="‘–¼"></td><td><input type="text" name="AttackMilitary2" value="0"></td><td></td><td><input type="text" name="DefenceCountry2" value="‘–¼"></td><td><input type="text" name="DefenceMilitary2" value="0"></td></tr>
+				<tr><td><input type="text" name="AttackCountry3" value="‘–¼"></td><td><input type="text" name="AttackMilitary3" value="0"></td><td></td><td><input type="text" name="DefenceCountry3" value="‘–¼"></td><td><input type="text" name="DefenceMilitary3" value="0"></td></tr>
+				<tr><td><input type="text" name="AttackCountry4" value="‘–¼"></td><td><input type="text" name="AttackMilitary4" value="0"></td><td></td><td><input type="text" name="DefenceCountry4" value="‘–¼"></td><td><input type="text" name="DefenceMilitary4" value="0"></td></tr>
+				<tr><td><input type="text" name="AttackCountry5" value="‘–¼"></td><td><input type="text" name="AttackMilitary5" value="0"></td><td></td><td><input type="text" name="DefenceCountry5" value="‘–¼"></td><td><input type="text" name="DefenceMilitary5" value="0"></td></tr>
+				<!-- <tr><th>ŒR–—Í‡Œv</th><th><script>function PrintA(){document.write(TotalAttackMilitary);}</script></th><th></th><th>ŒR–—Í‡Œv</th><th><script>function PrintB(){document.write(TotalDefenceMilitary);}</script></th></tr> -->
+			</table>
+			<input type="button" value="í“¬ŒvZ" onclick="Total()">
+			<h1>2.•’Ê‚Ìƒ_ƒCƒX</h1>
+			<p>1`100‚ªo‚é•’Ê‚Ìƒ_ƒCƒX‚Å‚·</p>
+			<input type="button" value="•’Ê‚Ìƒ_ƒCƒX‚ğU‚é" onclick="Normal()">
+		</form>
+		<script type="text/javascript">
+			function Total(){
+				var AttackMilitary1 = parseInt(document.main.AttackMilitary1.value);
+				var AttackMilitary2 = parseInt(document.main.AttackMilitary2.value);
+				var AttackMilitary3 = parseInt(document.main.AttackMilitary3.value);
+				var AttackMilitary4 = parseInt(document.main.AttackMilitary4.value);
+				var AttackMilitary5 = parseInt(document.main.AttackMilitary5.value);
+				var DefenceMilitary1 = parseInt(document.main.DefenceMilitary1.value);
+				var DefenceMilitary2 = parseInt(document.main.DefenceMilitary2.value);
+				var DefenceMilitary3 = parseInt(document.main.DefenceMilitary3.value);
+				var DefenceMilitary4 = parseInt(document.main.DefenceMilitary4.value);
+				var DefenceMilitary5 = parseInt(document.main.DefenceMilitary5.value);
+				var TotalAttackMilitary = AttackMilitary1+AttackMilitary2+AttackMilitary3+AttackMilitary4+AttackMilitary5;
+				var TotalDefenceMilitary = DefenceMilitary1+DefenceMilitary2+DefenceMilitary3+DefenceMilitary4+DefenceMilitary5;
+				var Random = Math.ceil( Math.random () * 100 );
+				var Result = (TotalAttackMilitary-TotalDefenceMilitary)*5+Random;
+				alert(Result);
+			}
+			function Normal(){
+				alert(Math.ceil( Math.random () * 100 ));
+			}
+		</script>
+		<br>
+        <table id="jqGridList"> </table>
+</body>
+</html>

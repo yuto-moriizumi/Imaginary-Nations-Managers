@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+
+<body>
+    <script>
+        function 例１() {
+            var 画像 = document.getElementById("例１画像表示場所"); // ア
+            画像.onload = function () {                              // イ
+                // 画像読込後の処理　　例：画像.width = 200;
+            }                                                       // ウ
+            画像.src = "test.jpg";                               // エ
+        }
+    </script>
+    <p>
+        <button onclick="例１()">例１</button>
+    </p>
+    <img id="例１画像表示場所">
+</body>
+
+</html>

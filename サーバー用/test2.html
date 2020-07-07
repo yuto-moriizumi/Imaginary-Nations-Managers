@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="main.js"></script> -->
+</head>
+
+<body id="parentbody" style="height: 98%;">
+    <div id="parentdiv" style="background-color: gold; width:1904px; height:860px;">
+        <canvas id="MyCanvas" width="641px" height="281px"></canvas>
+        <img id="img_test" src="map2.png" style="display:none; ">
+        <div id="msg" style="height: 100px;"></div>
+    </div>
+    <script>
+        var canvas = document.getElementById("MyCanvas");
+
+        if (canvas.getContext) {
+            var image = document.getElementById("img_test");
+
+            // canvasの定義
+            var ctx = canvas.getContext('2d');
+            // 画像の圧縮
+            var CanvasRatio = canvas.height / canvas.width;
+            var ImageRatio = image.height / image.width;  // ImageRatio≦CanvasRatio→横長→canvasの横幅がネックに
+            if (ImageRatio <= CanvasRatio) {   // 横長のとき
+                var CompressedImageWidth = canvas.width;
+                var CompressionRatio = canvas.width / image.width;
+                var CompressedImageHeight = CompressionRatio * image.height;
+            }
+            else {               // 縦長のとき
+                CompressedImageHeight = canvas.height;
+                CompressionRatio = canvas.height / image.height;
+                CompressedImageWidth = CompressionRatio * image.width;
+            }
+            // canvas全体をgrayにする
+            ctx.fillStyle = 'gray';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // 画像を canvas に表示
+            ctx.drawImage(image, 0, 0, CompressedImageWidth, CompressedImageHeight);   // これにより圧縮した画像が表示されます
+
+            //州画像のデータ格納用配列を作成
+            //MapX,MapY,Color(0~2)
+            image.onload = function () {
+                statemap = [];
+                for (MapX = 0; MapX < CompressedImageWidth; MapX++) {
+                    statemap[MapX] = [];
+                    for (MapY = 0; MapY < CompressedImageHeight; MapY++) {
+                        statemap[MapX][MapY] = [];
+                        var imagedata = ctx.getImageData(MapX, MapY, 1, 1);
+                        statemap[MapX][MapY][0] = imagedata.data[0]; //赤
+                        statemap[MapX][MapY][1] = imagedata.data[1]; //緑
+                        statemap[MapX][MapY][2] = imagedata.data[2]; //青
+                    }
+                }
+            }
+        }
+
+        canvas.onclick = function (evt) {
+
+            //  マウス座標の取得
+            var x = parseInt(evt.offsetX);
+            var y = parseInt(evt.offsetY);
+
+            //  指定座標のImageDataオブジェクトの取得 
+            //var imagedata = ctx.getImageData(x, y, 1, 1);
+
+            //  RGBAの取得
+            //var r = imagedata.data[0];
+            //var g = imagedata.data[1];
+            //var b = imagedata.data[2];
+            //var a = imagedata.data[3];
+            document.getElementById("msg").innerHTML = x + "," + y;
+            //document.getElementById("msg").innerHTML = "Red: " + statemap[x][y][0] + " Green: " + statemap[x][y][1] + " Blue: " + statemap[x][y][2];
+        }
+
+    </script>
+</body>
+
+</html>
